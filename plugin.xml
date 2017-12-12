@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-magtek" version="0.0.1">
+    <name>MagTek</name>
+    <description>Cordova MagTek Plugin</description>
+    <license>MIT</license>
+    <keywords>cordova,magtek,cordova-ios</keywords>
+    <repo>https://github.com/R1Daneel/cordova-plugin-magtek.git</repo>
+    <issue>https://github.com/R1Daneel/cordova-plugin-magtek/issues</issue>
+
+    <js-module src="www/magtek.js" name="magtek">
+        <clobbers target="plugins.magtek" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="MagTek">
+                <param name="ios-package" value="CDVMagTek"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVMagTek.h" />
+        <source-file src="src/ios/CDVMagTek.m" />
+        <header-file src="src/ios/lib/MTSCRA.h" />
+        <source-file src="src/ios/lib/libMTSCRA.a" framework="true" />
+
+        <framework src="CoreBluetooth.framework" />
+        <framework src="libstdc++.6.tbd" />
+    </platform>
+
+</plugin>
