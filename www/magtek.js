@@ -1,17 +1,21 @@
 
 var exec = require('cordova/exec');
 
-const PLUGIN_NAME = 'plugins.magtek';
+const PLUGIN_NAME = 'MagTek';
 
-var MagTek = function() {
-  this.listeners = {};
+var MagTek = function() {};
+
+MagTek.listeners = {};
+
+MagTek.getBLEStatus = function(success) {
+  exec(success, null, PLUGIN_NAME, 'getBLEStatus', []);
 };
 
-MagTek.prototype.BLEStatus = function(success) {
-  exec(success, null, PLUGIN_NAME, 'BLEStatus', []);
+MagTek.getSDKVersion = function(success) {
+  exec(success, null, PLUGIN_NAME, 'getSDKVersion', []);
 };
 
-MagTek.prototype.subscribe = function(event, callback, scope) {
+MagTek.subscribe = function(event, callback, scope) {
   if (typeof event !== 'string' || typeof callback !== 'function') {
     return;
   }
@@ -25,7 +29,7 @@ MagTek.prototype.subscribe = function(event, callback, scope) {
   this.listeners[event].push(item);
 };
 
-MagTek.prototype.unsubscribe = function(event, callback) {
+MagTek.unsubscribe = function(event, callback) {
   var eventListeners = this.listeners[event];
 
   if (!eventListeners) {
@@ -45,7 +49,7 @@ MagTek.prototype.unsubscribe = function(event, callback) {
   }
 };
 
-MagTek.prototype.fire = function(event, data, error) {
+MagTek.fire = function(event, data, error) {
   var eventListeners = this.listeners[event];
 
   if (!eventListeners) {

@@ -6,7 +6,8 @@
   "cordova": {
     "id": "cordova-plugin-magtek",
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   },
   "repository": {
@@ -19,7 +20,8 @@
   "keywords": [
     "cordova",
     "magtek",
-    "cordova-ios"
+    "cordova-ios",
+    "cordova-android"
   ],
   "scripts": {
     "lint": "eslint www/**",

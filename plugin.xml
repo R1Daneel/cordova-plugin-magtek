@@ -4,12 +4,12 @@
     <name>MagTek</name>
     <description>Cordova MagTek Plugin</description>
     <license>MIT</license>
-    <keywords>cordova,magtek,cordova-ios</keywords>
+    <keywords>cordova,magtek,cordova-ios,cordova-android</keywords>
     <repo>https://github.com/R1Daneel/cordova-plugin-magtek.git</repo>
     <issue>https://github.com/R1Daneel/cordova-plugin-magtek/issues</issue>
 
-    <js-module src="www/magtek.js" name="magtek">
-        <clobbers target="plugins.magtek" />
+    <js-module src="www/magtek.js" name="MagTek">
+        <clobbers target="cordova.plugins.magtek" />
     </js-module>
 
     <!-- ios -->
@@ -28,6 +28,27 @@
 
         <framework src="CoreBluetooth.framework" />
         <framework src="libstdc++.6.tbd" />
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/widget">
+            <feature name="MagTek">
+                <param name="android-package" value="it.lmancini.cordova.magtek.CDVMagTek"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.BLUETOOTH"/>
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        </config-file>
+
+        <source-file src="src/android/CDVMagTekPlugin.java" target-dir="src/it/lmancini/cordova/magtek"/>
+        <source-file src="src/android/CDVScraHanderCallback.java" target-dir="src/it/lmancini/cordova/magtek"/>
+        <source-file src="src/android/CDVEventEmitter.java" target-dir="src/it/lmancini/cordova/magtek"/>
+        <source-file src="src/android/CDVBLEStateReceiver.java" target-dir="src/it/lmancini/cordova/magtek"/>
+        <source-file src="src/android/lib/mtscra.jar" target-dir="libs" />
     </platform>
 
 </plugin>

@@ -2,9 +2,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <Cordova/CDVPlugin.h>
+#import "MTSCRA.h"
 
-@interface CDVMagTek: CDVPlugin <CBCentralManagerDelegate> {}
+@interface CDVMagTek: CDVPlugin <CBCentralManagerDelegate, MTSCRAEventDelegate> {}
 
-- (void)BLEStatus:(CDVInvokedUrlCommand*)command;
+- (void)getBLEStatus:(CDVInvokedUrlCommand*)command;
+- (void)getSDKVersion:(CDVInvokedUrlCommand*)command;
 
 @end
